@@ -16,10 +16,16 @@ resource opentelekomcloud_compute_keypair_v2 kp {
 }
 
 resource opentelekomcloud_vpc_subnet_v1 subnet {
-  cidr       = "192.168.0.0/16"
-  gateway_ip = "192.168.0.1"
-  name       = "subnet-do-not-delete-pls"
-  vpc_id     = opentelekomcloud_vpc_v1.vpc.id
+  cidr          = "192.168.0.0/16"
+  gateway_ip    = "192.168.0.1"
+  name          = "subnet-do-not-delete-pls"
+  vpc_id        = opentelekomcloud_vpc_v1.vpc.id
+  primary_dns   = "100.125.4.25"
+  secondary_dns = "8.8.8.8"
+
+  depends_on = [
+    opentelekomcloud_vpc_v1.vpc
+  ]
 }
 
 output vpc_id {
